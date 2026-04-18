@@ -1,0 +1,3 @@
+module.exports=[36520,a=>{a.v({className:"noto_sans_kr_426f9977-module__jE5jRG__className"})},33290,a=>{"use strict";var b=a.i(7997),c=a.i(36520);let d={className:c.default.className,style:{fontFamily:"'Noto Sans KR', 'Noto Sans KR Fallback'",fontStyle:"normal"}};null!=c.default.variable&&(d.variable=c.default.variable),a.s(["default",0,function({children:a}){return(0,b.jsx)("html",{lang:"ko",children:(0,b.jsx)("body",{className:d.className,children:a})})},"metadata",0,{title:{default:"사회복지법인 남산원",template:"%s | 남산원"},description:"서울시 중구 소파로에 위치한 사회복지법인 남산원 공식 홈페이지입니다."}],33290)},70864,a=>{a.n(a.i(33290))}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__12xx3ns._.js.map

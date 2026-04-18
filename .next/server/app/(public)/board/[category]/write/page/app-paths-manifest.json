@@ -1,0 +1,3 @@
+{
+  "/(public)/board/[category]/write/page": "app/(public)/board/[category]/write/page.js"
+}

@@ -1,0 +1,3 @@
+module.exports=[33354,(a,b,c)=>{"use strict";c._=function(a){return a&&a.__esModule?a:{default:a}}},70482,a=>{"use strict";var b=a.i(87924),c=a.i(50944);a.s(["default",0,function({id:a,active:d}){let e=(0,c.useRouter)();async function f(){await fetch(`/api/slider/${a}`,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({active:!d})}),e.refresh()}return(0,b.jsx)("button",{onClick:f,className:`px-3 py-1.5 rounded-full text-xs ${d?"bg-green-100 text-green-700":"bg-gray-100 text-gray-500"}`,children:d?"활성":"비활성"})}])}];
+
+//# sourceMappingURL=_0e7e1q.._.js.map

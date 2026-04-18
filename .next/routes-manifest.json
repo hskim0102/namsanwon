@@ -1,0 +1,283 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/auth/[...nextauth]",
+      "regex": "^/api/auth/(.+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPnextauth": "nxtPnextauth"
+      },
+      "namedRegex": "^/api/auth/(?<nxtPnextauth>.+?)(?:/)?$"
+    },
+    {
+      "page": "/api/posts/[id]",
+      "regex": "^/api/posts/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/posts/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/posts/[id]/verify",
+      "regex": "^/api/posts/([^/]+?)/verify(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/posts/(?<nxtPid>[^/]+?)/verify(?:/)?$"
+    },
+    {
+      "page": "/api/slider/[id]",
+      "regex": "^/api/slider/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/slider/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/board/[category]",
+      "regex": "^/board/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcategory": "nxtPcategory"
+      },
+      "namedRegex": "^/board/(?<nxtPcategory>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/board/[category]/write",
+      "regex": "^/board/([^/]+?)/write(?:/)?$",
+      "routeKeys": {
+        "nxtPcategory": "nxtPcategory"
+      },
+      "namedRegex": "^/board/(?<nxtPcategory>[^/]+?)/write(?:/)?$"
+    },
+    {
+      "page": "/board/[category]/[id]",
+      "regex": "^/board/([^/]+?)/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcategory": "nxtPcategory",
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/board/(?<nxtPcategory>[^/]+?)/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about/directions",
+      "regex": "^/about/directions(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about/directions(?:/)?$"
+    },
+    {
+      "page": "/about/facility",
+      "regex": "^/about/facility(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about/facility(?:/)?$"
+    },
+    {
+      "page": "/about/greeting",
+      "regex": "^/about/greeting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about/greeting(?:/)?$"
+    },
+    {
+      "page": "/about/history",
+      "regex": "^/about/history(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about/history(?:/)?$"
+    },
+    {
+      "page": "/about/photos",
+      "regex": "^/about/photos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about/photos(?:/)?$"
+    },
+    {
+      "page": "/about/status",
+      "regex": "^/about/status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about/status(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/donation-records",
+      "regex": "^/admin/donation\\-records(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/donation\\-records(?:/)?$"
+    },
+    {
+      "page": "/admin/login",
+      "regex": "^/admin/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/login(?:/)?$"
+    },
+    {
+      "page": "/admin/posts",
+      "regex": "^/admin/posts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/posts(?:/)?$"
+    },
+    {
+      "page": "/admin/posts/write",
+      "regex": "^/admin/posts/write(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/posts/write(?:/)?$"
+    },
+    {
+      "page": "/admin/slider",
+      "regex": "^/admin/slider(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/slider(?:/)?$"
+    },
+    {
+      "page": "/api/donation-records",
+      "regex": "^/api/donation\\-records(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/donation\\-records(?:/)?$"
+    },
+    {
+      "page": "/api/posts",
+      "regex": "^/api/posts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/posts(?:/)?$"
+    },
+    {
+      "page": "/api/slider",
+      "regex": "^/api/slider(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/slider(?:/)?$"
+    },
+    {
+      "page": "/api/upload",
+      "regex": "^/api/upload(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/upload(?:/)?$"
+    },
+    {
+      "page": "/business/admin-support/donation",
+      "regex": "^/business/admin\\-support/donation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/business/admin\\-support/donation(?:/)?$"
+    },
+    {
+      "page": "/business/admin-support/nutrition",
+      "regex": "^/business/admin\\-support/nutrition(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/business/admin\\-support/nutrition(?:/)?$"
+    },
+    {
+      "page": "/business/child-support/care",
+      "regex": "^/business/child\\-support/care(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/business/child\\-support/care(?:/)?$"
+    },
+    {
+      "page": "/business/child-support/education",
+      "regex": "^/business/child\\-support/education(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/business/child\\-support/education(?:/)?$"
+    },
+    {
+      "page": "/business/independence",
+      "regex": "^/business/independence(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/business/independence(?:/)?$"
+    },
+    {
+      "page": "/corporation/board",
+      "regex": "^/corporation/board(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/corporation/board(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/story/album",
+      "regex": "^/story/album(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/story/album(?:/)?$"
+    },
+    {
+      "page": "/story/news",
+      "regex": "^/story/news(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/story/news(?:/)?$"
+    },
+    {
+      "page": "/support/donation",
+      "regex": "^/support/donation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/support/donation(?:/)?$"
+    },
+    {
+      "page": "/support/volunteer",
+      "regex": "^/support/volunteer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/support/volunteer(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

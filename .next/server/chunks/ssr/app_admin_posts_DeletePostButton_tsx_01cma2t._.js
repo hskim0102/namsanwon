@@ -1,0 +1,3 @@
+module.exports=[20868,a=>{"use strict";var b=a.i(87924),c=a.i(50944);a.s(["default",0,function({id:a}){let d=(0,c.useRouter)();async function e(){confirm("삭제하시겠습니까?")&&(await fetch(`/api/posts/${a}`,{method:"DELETE"}),d.refresh())}return(0,b.jsx)("button",{onClick:e,className:"text-red-500 hover:text-red-700 text-xs",children:"삭제"})}])}];
+
+//# sourceMappingURL=app_admin_posts_DeletePostButton_tsx_01cma2t._.js.map

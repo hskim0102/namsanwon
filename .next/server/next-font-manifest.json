@@ -1,0 +1,88 @@
+{
+  "app": {
+    "[project]/app/(public)/about/directions/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/about/facility/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/about/greeting/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/about/history/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/about/photos/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/about/status/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/board/[category]/[id]/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/board/[category]/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/board/[category]/write/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/business/admin-support/donation/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/business/admin-support/nutrition/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/business/child-support/care/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/business/child-support/education/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/business/independence/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/corporation/board/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/story/album/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/story/news/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/support/donation/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/(public)/support/volunteer/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/_not-found/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/admin/donation-records/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/admin/login/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/admin/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/admin/posts/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/admin/posts/write/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ],
+    "[project]/app/admin/slider/page": [
+      "static/media/fca78c2ee6cec166-s.p.0kizb7t94.kuf.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}
