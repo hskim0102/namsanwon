@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/middleware.ts"],"sourcesContent":["// middleware.ts\nimport { withAuth } from 'next-auth/middleware'\nimport { NextResponse } from 'next/server'\n\nexport default withAuth(\n  function middleware(req) {\n    return NextResponse.next()\n  },\n  {\n    pages: {\n      signIn: '/admin/login',\n    },\n  }\n)\n\nexport const config = {\n  matcher: ['/admin/((?!login).*)'],\n}\n"],"names":["middleware","req","next","pages","signIn","config","matcher"],"mappings":";;;;;;AAAA,gBAAgB;AAChB;AACA;AAAA;;;uCAEe,IAAA,8JAAQ,EACrB,SAASA,WAAWC,GAAG;IACrB,OAAO,6MAAY,CAACC,IAAI;AAC1B,GACA;IACEC,OAAO;QACLC,QAAQ;IACV;AACF;AAGK,MAAMC,SAAS;IACpBC,SAAS;QAAC;KAAuB;AACnC"}}]
-}
