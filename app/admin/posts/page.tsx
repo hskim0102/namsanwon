@@ -3,11 +3,12 @@ import { BOARD_META } from '@/lib/board'
 import Link from 'next/link'
 import DeletePostButton from './DeletePostButton'
 
-type Props = { searchParams: { category?: string; page?: string } }
+type Props = { searchParams: Promise<{ category?: string; page?: string }> }
 
 export default async function AdminPostsPage({ searchParams }: Props) {
-  const category = searchParams.category ?? 'notice'
-  const page = Number(searchParams.page ?? '1')
+  const { category: rawCategory, page: rawPage } = await searchParams
+  const category = rawCategory ?? 'notice'
+  const page = Number(rawPage ?? '1')
   const limit = 20
   const skip = (page - 1) * limit
 

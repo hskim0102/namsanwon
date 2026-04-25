@@ -4,10 +4,11 @@ import PostList from '@/components/board/PostList'
 
 export const metadata: Metadata = { title: '법인게시판' }
 
-type Props = { searchParams: { page?: string } }
+type Props = { searchParams: Promise<{ page?: string }> }
 
-export default function CorporationBoardPage({ searchParams }: Props) {
-  const page = Math.max(1, Number(searchParams.page ?? '1'))
+export default async function CorporationBoardPage({ searchParams }: Props) {
+  const { page: rawPage } = await searchParams
+  const page = Math.max(1, Number(rawPage ?? '1'))
   return (
     <>
       <PageHeader title="법인게시판" breadcrumb={['사회복지법인 남산원', '법인게시판']} />
