@@ -12,44 +12,58 @@ async function getRecentPosts(category: string, limit = 5) {
 
 type Post = { id: number; title: string; createdAt: Date }
 
-function PostSection({
+function PostCard({
   title,
   posts,
   href,
   category,
+  accentColor,
 }: {
   title: string
   posts: Post[]
   href: string
   category: string
+  accentColor: string
 }) {
   return (
-    <div className="bg-white rounded-xl shadow-sm p-5">
-      <div className="flex justify-between items-center mb-3 border-b-2 border-[#E8863A] pb-2">
-        <h3 className="font-bold text-[#3D2B1F]">{title}</h3>
-        <Link href={href} className="text-xs text-[#E8863A] hover:underline">
-          더보기
-        </Link>
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <div className={`h-1 ${accentColor}`} />
+      <div className="p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="font-bold text-slate-800 text-base">{title}</h3>
+          <Link
+            href={href}
+            className="text-xs text-[#3B9EDA] hover:text-[#1a6fa8] font-medium flex items-center gap-0.5 transition-colors"
+          >
+            더보기
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
+        <ul className="space-y-3">
+          {posts.length === 0 ? (
+            <li className="text-sm text-slate-400 py-4 text-center">게시글이 없습니다.</li>
+          ) : (
+            posts.map((p) => (
+              <li key={p.id}>
+                <Link
+                  href={`/board/${category}/${p.id}`}
+                  className="flex items-center justify-between gap-3 group"
+                >
+                  <span className="flex items-center gap-2 text-sm text-slate-600 group-hover:text-[#3B9EDA] transition-colors truncate">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-[#3B9EDA] flex-shrink-0 transition-colors" />
+                    {p.title}
+                  </span>
+                  <span className="text-xs text-slate-400 whitespace-nowrap flex-shrink-0 bg-slate-50 px-2 py-0.5 rounded-full">
+                    {p.createdAt.toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit' })}
+                  </span>
+                </Link>
+              </li>
+            ))
+          )}
+        </ul>
       </div>
-      <ul className="space-y-2">
-        {posts.length === 0 ? (
-          <li className="text-sm text-gray-400">게시글이 없습니다.</li>
-        ) : (
-          posts.map((p) => (
-            <li key={p.id} className="flex justify-between items-center text-sm gap-2">
-              <Link
-                href={`/board/${category}/${p.id}`}
-                className="hover:text-[#E8863A] truncate"
-              >
-                {p.title}
-              </Link>
-              <span className="text-gray-400 text-xs whitespace-nowrap">
-                {p.createdAt.toLocaleDateString('ko-KR')}
-              </span>
-            </li>
-          ))
-        )}
-      </ul>
     </div>
   )
 }
@@ -61,9 +75,27 @@ export default async function RecentPostsSection() {
   ])
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-      <PostSection title="공지사항" posts={notices} href="/board/notice" category="notice" />
-      <PostSection title="자유게시판" posts={frees} href="/board/free" category="free" />
+    <section className="max-w-6xl mx-auto px-4 py-6">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-bold text-slate-800">최근 소식</h2>
+        <div className="h-px flex-1 bg-slate-100 mx-4" />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <PostCard
+          title="공지사항"
+          posts={notices}
+          href="/board/notice"
+          category="notice"
+          accentColor="bg-[#3B9EDA]"
+        />
+        <PostCard
+          title="자유게시판"
+          posts={frees}
+          href="/board/free"
+          category="free"
+          accentColor="bg-[#FF7A59]"
+        />
+      </div>
     </section>
   )
 }

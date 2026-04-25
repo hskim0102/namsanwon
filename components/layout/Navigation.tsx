@@ -64,7 +64,7 @@ export default function Navigation() {
   return (
     <>
       {/* 데스크탑 네비게이션 */}
-      <nav className="hidden md:flex items-center gap-1" aria-label="주요 메뉴">
+      <nav className="hidden md:flex items-center gap-0.5" aria-label="주요 메뉴">
         {NAV_ITEMS.map((item, idx) => (
           <div
             key={idx}
@@ -75,26 +75,34 @@ export default function Navigation() {
             <button
               aria-label={`${item.label} 메뉴`}
               aria-expanded={openIndex === idx}
-              className="px-4 py-2 text-[#3D2B1F] font-medium hover:text-[#E8863A] transition-colors"
+              className={`px-3.5 py-2 text-sm font-medium transition-all rounded-lg relative group ${
+                openIndex === idx ? 'text-[#3B9EDA]' : 'text-[#1E293B] hover:text-[#3B9EDA]'
+              }`}
             >
               {item.label}
+              <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-[#3B9EDA] rounded-full transition-all duration-200 ${
+                openIndex === idx ? 'w-4/5' : 'w-0 group-hover:w-4/5'
+              }`} />
             </button>
             {openIndex === idx && (
               <div
-                className="absolute top-full left-0 bg-white shadow-lg rounded-b-lg min-w-[140px] z-50 border-t-2 border-[#E8863A]"
+                className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-white shadow-xl rounded-2xl min-w-[150px] z-50 overflow-hidden border border-slate-100"
                 role="menu"
               >
-                {item.children.map((child) => (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    role="menuitem"
-                    className="block px-4 py-2 text-sm text-[#3D2B1F] hover:bg-[#FFF8F0] hover:text-[#E8863A] transition-colors"
-                    onClick={() => setOpenIndex(null)}
-                  >
-                    {child.label}
-                  </Link>
-                ))}
+                <div className="py-2">
+                  {item.children.map((child) => (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      role="menuitem"
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-600 hover:bg-[#EBF5FF] hover:text-[#3B9EDA] transition-colors"
+                      onClick={() => setOpenIndex(null)}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#3B9EDA] opacity-0 group-hover:opacity-100 flex-shrink-0" />
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -103,39 +111,54 @@ export default function Navigation() {
 
       {/* 모바일 햄버거 버튼 */}
       <button
-        className="md:hidden flex flex-col gap-1.5 p-2"
+        className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-slate-100 transition-colors"
         aria-label={mobileOpen ? '메뉴 닫기' : '메뉴 열기'}
         aria-expanded={mobileOpen}
         onClick={() => setMobileOpen(!mobileOpen)}
       >
-        <span className={`block w-6 h-0.5 bg-[#3D2B1F] transition-transform ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-        <span className={`block w-6 h-0.5 bg-[#3D2B1F] transition-opacity ${mobileOpen ? 'opacity-0' : ''}`} />
-        <span className={`block w-6 h-0.5 bg-[#3D2B1F] transition-transform ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+        <span className={`block w-5 h-0.5 bg-[#1E293B] rounded-full transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+        <span className={`block w-5 h-0.5 bg-[#1E293B] rounded-full transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
+        <span className={`block w-5 h-0.5 bg-[#1E293B] rounded-full transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
       </button>
 
       {/* 모바일 메뉴 패널 */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 top-16 bg-white z-40 overflow-y-auto" aria-label="모바일 메뉴">
+          <div className="px-4 py-4 border-b border-slate-100">
+            <Link
+              href="/support/donation"
+              className="flex items-center justify-center gap-2 bg-[#FF7A59] text-white font-semibold py-3 rounded-full"
+              onClick={() => setMobileOpen(false)}
+            >
+              후원하기
+            </Link>
+          </div>
           <nav>
             {NAV_ITEMS.map((item, idx) => (
-              <div key={idx} className="border-b border-gray-100">
+              <div key={idx} className="border-b border-slate-100">
                 <button
-                  className="w-full flex justify-between items-center px-4 py-3 text-left font-medium text-[#3D2B1F]"
+                  className="w-full flex justify-between items-center px-5 py-4 text-left font-medium text-[#1E293B]"
                   aria-expanded={mobileExpandIndex === idx}
                   onClick={() => setMobileExpandIndex(mobileExpandIndex === idx ? null : idx)}
                 >
-                  {item.label}
-                  <span className="text-[#E8863A]">{mobileExpandIndex === idx ? '▲' : '▼'}</span>
+                  <span>{item.label}</span>
+                  <svg
+                    className={`w-4 h-4 text-[#3B9EDA] transition-transform duration-200 ${mobileExpandIndex === idx ? 'rotate-180' : ''}`}
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </button>
                 {mobileExpandIndex === idx && (
-                  <div className="bg-[#FFF8F0] pl-4">
+                  <div className="bg-[#EBF5FF] px-4 pb-2">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-4 py-2.5 text-sm text-[#3D2B1F] hover:text-[#E8863A]"
+                        className="flex items-center gap-2 px-2 py-2.5 text-sm text-slate-600 hover:text-[#3B9EDA]"
                         onClick={() => setMobileOpen(false)}
                       >
+                        <span className="w-1 h-1 rounded-full bg-[#3B9EDA] flex-shrink-0" />
                         {child.label}
                       </Link>
                     ))}
