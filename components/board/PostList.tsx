@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 type Props = { category: string; page: number }
 
 export default async function PostList({ category, page }: Props) {
-  const limit = 15
+  const limit = 10
   const skip = (page - 1) * limit
 
   const [posts, total] = await Promise.all([
@@ -84,23 +84,41 @@ export default async function PostList({ category, page }: Props) {
       </div>
 
       {/* 페이지네이션 */}
-      {totalPages > 1 && (
-        <div className="flex justify-center gap-1.5 mt-6">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-            <Link
-              key={p}
-              href={`?page=${p}`}
-              className={`w-8 h-8 flex items-center justify-center rounded-full text-sm transition-all ${
-                p === page
-                  ? 'bg-[#3B9EDA] text-white shadow-sm'
-                  : 'bg-white border border-slate-200 hover:border-[#3B9EDA] hover:text-[#3B9EDA] text-slate-600'
-              }`}
-            >
-              {p}
-            </Link>
-          ))}
-        </div>
-      )}
+      {totalPages > 1 && (() => {
+        const GROUP_SIZE = 10
+        const groupStart = Math.floor((page - 1) / GROUP_SIZE) * GROUP_SIZE + 1
+        const groupEnd = Math.min(groupStart + GROUP_SIZE - 1, totalPages)
+        const hasPrev = groupStart > 1
+        const hasNext = groupEnd < totalPages
+        const btnBase = 'w-8 h-8 flex items-center justify-center rounded-full text-sm transition-all'
+        const btnInactive = 'bg-white border border-slate-200 hover:border-[#3B9EDA] hover:text-[#3B9EDA] text-slate-600'
+        const btnActive = 'bg-[#3B9EDA] text-white shadow-sm'
+        const btnNav = 'bg-white border border-slate-200 hover:border-[#3B9EDA] hover:text-[#3B9EDA] text-slate-500'
+
+        return (
+          <div className="flex justify-center gap-1.5 mt-6">
+            {hasPrev && (
+              <Link href={`?page=${groupStart - 1}`} className={`${btnBase} ${btnNav}`}>
+                {'‹'}
+              </Link>
+            )}
+            {Array.from({ length: groupEnd - groupStart + 1 }, (_, i) => groupStart + i).map((p) => (
+              <Link
+                key={p}
+                href={`?page=${p}`}
+                className={`${btnBase} ${p === page ? btnActive : btnInactive}`}
+              >
+                {p}
+              </Link>
+            ))}
+            {hasNext && (
+              <Link href={`?page=${groupEnd + 1}`} className={`${btnBase} ${btnNav}`}>
+                {'›'}
+              </Link>
+            )}
+          </div>
+        )
+      })()}
     </div>
   )
 }

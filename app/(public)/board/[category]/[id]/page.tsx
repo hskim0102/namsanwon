@@ -3,6 +3,9 @@ import PageHeader from '@/components/layout/PageHeader'
 import Link from 'next/link'
 import { getBoardMeta } from '@/lib/board'
 import { prisma } from '@/lib/prisma'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
+import PostActionsPublic from '@/components/board/PostActionsPublic'
 
 type Props = { params: Promise<{ category: string; id: string }> }
 
@@ -26,6 +29,23 @@ export default async function PostDetailPage({ params }: Props) {
   })
   if (!post || post.category !== category) notFound()
 
+  // 조회수 증가 (응답 속도에 영향 없도록 await 생략)
+  prisma.post.update({ where: { id }, data: { views: { increment: 1 } } }).catch(() => {})
+
+  const [prevPost, nextPost] = await Promise.all([
+    prisma.post.findFirst({
+      where: { category, createdAt: { lt: post.createdAt }, id: { not: id } },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, title: true },
+    }),
+    prisma.post.findFirst({
+      where: { category, createdAt: { gt: post.createdAt }, id: { not: id } },
+      orderBy: { createdAt: 'asc' },
+      select: { id: true, title: true },
+    }),
+  ])
+
+  const session = await getServerSession(authOptions)
   const meta = getBoardMeta(category)
 
   return (
@@ -68,13 +88,40 @@ export default async function PostDetailPage({ params }: Props) {
             </div>
           )}
         </div>
-        <div className="flex justify-between mt-4">
+        {/* 이전글 / 다음글 */}
+        <div className="mt-4 border rounded-xl overflow-hidden bg-white shadow-sm text-sm">
+          {nextPost && (
+            <Link
+              href={`/board/${category}/${nextPost.id}`}
+              className="flex items-center gap-3 px-5 py-3 border-b hover:bg-slate-50 transition-colors"
+            >
+              <span className="text-[#3B9EDA] font-medium w-12 flex-shrink-0">다음글</span>
+              <span className="text-slate-700 truncate">{nextPost.title}</span>
+            </Link>
+          )}
+          {prevPost && (
+            <Link
+              href={`/board/${category}/${prevPost.id}`}
+              className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 transition-colors"
+            >
+              <span className="text-slate-400 font-medium w-12 flex-shrink-0">이전글</span>
+              <span className="text-slate-700 truncate">{prevPost.title}</span>
+            </Link>
+          )}
+        </div>
+        <div className="flex items-center justify-between mt-4">
           <Link
             href={`/board/${category}`}
             className="text-sm text-gray-500 hover:text-[#E8863A] transition-colors"
           >
             ← 목록으로
           </Link>
+          <PostActionsPublic
+            id={id}
+            category={category}
+            isAdmin={!!session}
+            hasPassword={!!post.password}
+          />
         </div>
       </div>
     </>

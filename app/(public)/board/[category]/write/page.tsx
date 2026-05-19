@@ -3,6 +3,9 @@ import { useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import PageHeader from '@/components/layout/PageHeader'
 import { getBoardMeta } from '@/lib/board'
+import dynamic from 'next/dynamic'
+
+const RichEditor = dynamic(() => import('@/components/editor/RichEditor'), { ssr: false })
 
 export default function WritePage() {
   const params = useParams()
@@ -72,12 +75,10 @@ export default function WritePage() {
               required
             />
           </div>
-          <textarea
-            className="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#E8863A] h-48 resize-none"
-            placeholder="내용 *"
+          <RichEditor
             value={form.content}
-            onChange={(e) => setForm({ ...form, content: e.target.value })}
-            required
+            onChange={(html) => setForm({ ...form, content: html })}
+            placeholder="내용을 입력하세요."
           />
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <div className="flex gap-3 justify-end">

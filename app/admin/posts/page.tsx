@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { BOARD_META } from '@/lib/board'
 import Link from 'next/link'
-import DeletePostButton from './DeletePostButton'
+import PostActions from './PostActions'
 
 type Props = { searchParams: Promise<{ category?: string; page?: string }> }
 
@@ -66,7 +66,7 @@ export default async function AdminPostsPage({ searchParams }: Props) {
                   {p.createdAt.toLocaleDateString('ko-KR')}
                 </td>
                 <td className="py-3 px-4 text-center">
-                  <DeletePostButton id={p.id} />
+                  <PostActions id={p.id} />
                 </td>
               </tr>
             ))}

@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const category = searchParams.get('category') ?? 'notice'
   const page = Math.max(1, Number(searchParams.get('page') ?? '1'))
-  const limit = 15
+  const limit = 10
   const skip = (page - 1) * limit
 
   const [posts, total] = await Promise.all([

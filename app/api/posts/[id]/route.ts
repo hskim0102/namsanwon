@@ -23,6 +23,28 @@ export async function GET(
   return NextResponse.json(post)
 }
 
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await getServerSession(authOptions)
+  if (!session) return NextResponse.json({ error: '권한 없음' }, { status: 401 })
+
+  const { id: idStr } = await params
+  const id = Number(idStr)
+  if (isNaN(id)) return NextResponse.json({ error: '잘못된 ID' }, { status: 400 })
+
+  const body = await req.json()
+  const { title, content, author } = body
+
+  const post = await prisma.post.update({
+    where: { id },
+    data: { title, content, author, updatedAt: new Date() },
+  })
+
+  return NextResponse.json(post)
+}
+
 export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
