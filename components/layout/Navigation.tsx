@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 const NAV_ITEMS = [
   {
@@ -60,6 +60,21 @@ export default function Navigation() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileExpandIndex, setMobileExpandIndex] = useState<number | null>(null)
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const handleMenuEnter = (idx: number) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+    setOpenIndex(idx)
+  }
+
+  const handleMenuLeave = () => {
+    closeTimerRef.current = setTimeout(() => {
+      setOpenIndex(null)
+    }, 120)
+  }
 
   return (
     <>
@@ -69,8 +84,8 @@ export default function Navigation() {
           <div
             key={idx}
             className="relative"
-            onMouseEnter={() => setOpenIndex(idx)}
-            onMouseLeave={() => setOpenIndex(null)}
+            onMouseEnter={() => handleMenuEnter(idx)}
+            onMouseLeave={handleMenuLeave}
           >
             <button
               aria-label={`${item.label} 메뉴`}
